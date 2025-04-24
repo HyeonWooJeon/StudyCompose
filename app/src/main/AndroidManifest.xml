@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.project2"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"
+        android:minSdkVersion="33"/>
+    <uses-permission android:name="android.permission.ACCESS_ADSERVICES_ATTRIBUTION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+<!--추가-->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+
+    <uses-permission android:name="android.permission.READ_MEDIA_VISUAL_USER_SELECTED" />
+<!--Fused Location Provider API-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+
+    <!--    <uses-permission android:name="android.permission.INTERNET"/>-->
+<!--    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>-->
+<!--    <uses-permission android:name="android.permission.WAKE_LOCK"/>-->
+
+<!--    카메라가 없어도 상관없다라는 부분 -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+<!--        android:required="true" />-->
+
+
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Project2"
+        tools:targetApi="34">
+
+        <activity
+            android:name=".OneViewOneState"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Project2"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".SignInActivity"
+            android:theme="@style/Theme.Project2"
+            />
+        <activity android:name=".Gallery"
+            android:theme="@style/Theme.Project2"
+            />
+        <activity android:name=".WeatherActivity"
+            android:theme="@style/Theme.Project2"
+            />
+        <activity android:name=".SubActivity"
+            android:theme="@style/Theme.Project2"
+            />
+        <activity android:name=".IdProjectCheck"
+            android:label="Project2/IdPass"
+            android:theme="@style/Theme.Project2"/>
+        <activity android:name=".IdProject"
+            android:label="Project2/IdPass"
+            android:theme="@style/Theme.Project2"/>
+<!--        <activity android:name=".MoveActivity"-->
+<!--            android:label="Project2/Alert"-->
+<!--            android:theme="@style/Theme.Project2"-->
+<!--            android:windowSoftInputMode="adjustResize"/>-->
+
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.example.project2.sendAlertPage" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name=".WeatherWidgetReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/weather_widget_info" />
+        </receiver>
+
+<!--        <service-->
+<!--            android:name=".WeatherUpdateService"-->
+<!--            android:permission="android.permission.BIND_JOB_SERVICE"/>-->
+
+
+        <!--        <provider-->
+<!--            android:authorities="com.example.자신의 프로젝트 명"-->
+<!--            android:name="androidx.core.content.FileProvider"-->
+<!--            android:exported="false"-->
+<!--            android:grantUriPermissions="true">-->
+
+<!--            <meta-data-->
+<!--                android:name="android.support.fileprovider"-->
+<!--                android:resource="@xml/fileprovider" />-->
+<!--        </provider>-->
+
+
+
+    </application>
+
+
+
+</manifest>
